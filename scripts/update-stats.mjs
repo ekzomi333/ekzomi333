@@ -486,13 +486,21 @@ ${segs}${bars}
 const block = [
     "## ⚡ Lifetime activity",
     "",
-    `<img src="assets/summary.svg" alt="summary" />`,
+    `<img src="assets/summary.svg?v=${today}" alt="summary" />`,
     "",
-    `<img src="assets/lifetime-activity.svg" alt="lifetime activity" />`,
+    `<img src="assets/lifetime-activity.svg?v=${today}" alt="lifetime activity" />`,
     "",
-    `<img src="assets/activity-heatmap.svg" alt="activity heatmap" />`,
+    `<img src="assets/activity-heatmap.svg?v=${today}" alt="activity heatmap" />`,
     "",
-    `*Auto-updated · last update: ${today}*`
+    `*Auto-updated · last update: ${today}*`,
+    "",
+    `**Most used languages**`,
+    "",
+    `<img src="assets/languages.svg?v=${today}" alt="top langs" />`,
+    "",
+    `**GitHub stats**`,
+    "",
+    `<img src="assets/github-stats.svg?v=${today}" alt="github stats" />`
 ].join("\n");
 
 const readme = readFileSync(readmePath, "utf8");
