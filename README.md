@@ -15,6 +15,7 @@
 
 <img src="assets/languages.svg?v=2026-09-28" alt="top langs" />
 
+<img src="assets/languages.svg" alt="top langs" />
 **GitHub stats**
 
 <img src="assets/github-stats.svg?v=2026-09-28" alt="github stats" />
