@@ -366,6 +366,120 @@ if (daysSorted.length > 0) {
     writeAsset("activity-heatmap.svg", heatmapCard(dayCounts, first, last));
 }
 
+// ---- GitHub cards (Languages / GitHub stats) rendered from the GitHub API ----
+
+const ghHeaders = { "User-Agent": "ekzomi333-profile-stats", Accept: "application/vnd.github+json" };
+
+async function ghFetch(path) {
+    const res = await fetch(`https://api.github.com${path}`, { headers: ghHeaders });
+    if (!res.ok) throw new Error(`GitHub API ${path}: HTTP ${res.status}`);
+    return res.json();
+}
+
+/** Official language colors for the common ones; hash fallback otherwise. */
+const LANG_COLORS = {
+    Python: "#3572A5", "C++": "#f34b7d", C: "#555555", HTML: "#e34c26", JavaScript: "#f1e05a",
+    TypeScript: "#3178c6", CSS: "#563d7c", Zig: "#ec915c", "C#": "#178600", Java: "#b07219",
+    Rust: "#dea584", Go: "#00ADD8", Shell: "#89e051", PowerShell: "#012456", Lua: "#000080",
+    PHP: "#4F5D95", Ruby: "#701516", Kotlin: "#A97BFF", Swift: "#F05138", Dart: "#00B4AB",
+    Vue: "#41b883", Svelte: "#ff3e00", Markdown: "#083fa1", Dockerfile: "#384d54", Jinja: "#a52a22"
+};
+function langColor(name) {
+    if (LANG_COLORS[name]) return LANG_COLORS[name];
+    let hash = 0;
+    for (const ch of name) hash = (hash * 31 + ch.charCodeAt(0)) % 0xffffff;
+    return `#${hash.toString(16).padStart(6, "0")}`;
+}
+
+// languages card: compact horizontal bars, top 6 languages by total bytes
+try {
+    const repos = await ghFetch("/users/ekzomi333/repos?per_page=100&sort=updated");
+    const byLang = new Map();
+    let repoCount = 0;
+    let stars = 0;
+    let forks = 0;
+    let totalCommits = 0;
+    for (const repo of repos) {
+        repoCount += 1;
+        stars += repo.stargazers_count;
+        forks += repo.forks_count;
+        if (repo.fork || repo.archived) continue;
+        try {
+            const langs = await ghFetch(`/repos/ekzomi333/${repo.name}/languages`);
+            for (const [lang, bytes] of Object.entries(langs)) byLang.set(lang, (byLang.get(lang) ?? 0) + bytes);
+        } catch {
+            // per-repo language fetch failed (rate limit): skip repo
+        }
+    }
+    // total commits from the contributors endpoint (sum over own repos)
+    for (const repo of repos) {
+        if (repo.fork || repo.archived) continue;
+        try {
+            const contribs = await ghFetch(`/repos/ekzomi333/${repo.name}/contributors?per_page=100&anon=true`);
+            for (const c of contribs) if (c.login === "ekzomi333") totalCommits += c.contributions;
+        } catch {
+            // rate limit: skip
+        }
+    }
+
+    // top-langs compact card
+    const top = [...byLang.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
+    const totalBytes = top.reduce((s, [, b]) => s + b, 0);
+    const barW = 444;
+    let bars = "";
+    let segs = "";
+    let x = 25;
+    top.forEach(([lang, bytes], i) => {
+        const share = totalBytes > 0 ? bytes / totalBytes : 0;
+        const pct = Math.round(share * 1000) / 10;
+        const y = 62 + i * 29;
+        bars += `
+    <rect width="11" height="11" x="25" y="${y - 11}" rx="2" fill="${langColor(lang)}"/>
+    <text x="42" y="${y}" fill="#c9d1d9" font-family="${FONT}" font-size="13">${esc(lang)}</text>
+    <text x="469" y="${y}" text-anchor="end" fill="#c9d1d9" font-family="${FONT}" font-size="13">${pct}%</text>`;
+        const segW = Math.max(3, Math.round(share * barW));
+        segs += `  <rect width="${segW}" height="8" x="${x}" y="47" fill="${langColor(lang)}" rx="1"/>
+`;
+        x += segW;
+    });
+    const langsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${62 + 29 * top.length}" viewBox="0 0 494 ${62 + 29 * top.length}">
+  <rect x="0.5" y="0.5" width="493" height="${61 + 29 * top.length}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">Most used languages</text>
+${segs}${bars}
+</svg>`;
+    writeAsset("languages.svg", langsSvg);
+
+    // github stats card (repos / stars / forks / commits / followers)
+    let followers = null;
+    try {
+        const user = await ghFetch("/users/ekzomi333");
+        followers = user.followers;
+        if (typeof user.public_repos === "number") repoCount = Math.max(repoCount, user.public_repos);
+    } catch {
+        // keep repoCount from the repos listing
+    }
+    const statsRows = [
+        ["⭐ Total stars", n(stars)],
+        ["🍴 Total forks", n(forks)],
+        ["📦 Repositories", n(repoCount)],
+        ["🧾 Commits", n(totalCommits)],
+        ["👥 Followers", followers === null ? "—" : n(followers)]
+    ];
+    const statsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${60 + 33 * statsRows.length + 10}" viewBox="0 0 494 ${60 + 33 * statsRows.length + 10}">
+  <rect x="0.5" y="0.5" width="493" height="${59 + 33 * statsRows.length + 10}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">GitHub stats</text>
+  <line x1="0" y1="47" x2="494" y2="47" stroke="#21262d" stroke-width="1"/>${statsRows.map(([label, value], i) => `
+    <g transform="translate(25, ${62 + i * 33})">
+        <text x="0" y="15" fill="#c9d1d9" font-family="${FONT}" font-size="14">${esc(label)}</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">${esc(value)}</text>
+    </g>`).join("")}
+</svg>`;
+    writeAsset("github-stats.svg", statsSvg);
+    console.log(`github cards: ${repoCount} repos, ${totalCommits} commits, languages: ${top.map(([l]) => l).join(", ")}`);
+} catch (error) {
+    console.log(`github cards skipped: ${error.message}`);
+}
+
 const block = [
     "## ⚡ Lifetime activity",
     "",

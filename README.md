@@ -20,9 +20,9 @@
 
 <div align="center">
 
-**Languages**
+**Most used languages**
 
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=ekzomi333&layout=compact&hide_border=true&bg_color=0d1117&title_color=58a6ff&text_color=c9d1d9" alt="top langs" />
+<img src="assets/languages.svg" alt="top langs" />
 
 </div>
 
@@ -32,6 +32,6 @@
 
 **GitHub stats**
 
-<img src="https://github-readme-stats-sigma-five.vercel.app/api?username=ekzomi333&show_icons=true&hide_border=true&bg_color=0d1117&title_color=58a6ff&icon_color=58a6ff&text_color=c9d1d9&ring_color=58a6ff" alt="ekzomi333 stats" />
+<img src="assets/github-stats.svg" alt="github stats" />
 
 </div>
