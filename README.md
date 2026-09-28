@@ -5,9 +5,10 @@
 
 <img src="assets/summary.svg?v=2026-09-28" alt="summary" />
 
+<img src="assets/activity-heatmap.svg?v=2026-09-28" alt="activity heatmap" />
+
 <img src="assets/lifetime-activity.svg?v=2026-09-28" alt="lifetime activity" />
 
-<img src="assets/activity-heatmap.svg?v=2026-09-28" alt="activity heatmap" />
 
 *Auto-updated · last update: 2026-09-28*
 
