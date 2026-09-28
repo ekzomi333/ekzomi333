@@ -15,22 +15,22 @@
     <g transform="translate(25, 128)">
         <text x="0" y="14" font-size="16">🔁</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">User turns</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">44</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">45</text>
     </g>
     <g transform="translate(25, 161)">
         <text x="0" y="14" font-size="16">⚙️</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">Agent steps</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1,159</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1,170</text>
     </g>
     <g transform="translate(25, 194)">
         <text x="0" y="14" font-size="16">🛠</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">Tool calls</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1,162</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1,172</text>
     </g>
     <g transform="translate(25, 227)">
         <text x="0" y="14" font-size="16">⌨️</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">Shell commands</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">518</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">525</text>
     </g>
     <g transform="translate(25, 260)">
         <text x="0" y="14" font-size="16">📝</text>
@@ -40,7 +40,7 @@
     <g transform="translate(25, 293)">
         <text x="0" y="14" font-size="16">✏️</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">Files edited</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">117</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">120</text>
     </g>
     <g transform="translate(25, 326)">
         <text x="0" y="14" font-size="16">📖</text>
@@ -70,6 +70,6 @@
     <g transform="translate(25, 491)">
         <text x="0" y="14" font-size="16">🪙</text>
         <text x="28" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">Tokens generated</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">144.4k</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">144.8k</text>
     </g>
 </svg>

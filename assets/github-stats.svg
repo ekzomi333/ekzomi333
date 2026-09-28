@@ -16,10 +16,10 @@
     </g>
     <g transform="translate(25, 161)">
         <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">🧾 Commits</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">6</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1</text>
     </g>
     <g transform="translate(25, 194)">
         <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">👥 Followers</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">0</text>
+        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">—</text>
     </g>
 </svg>
