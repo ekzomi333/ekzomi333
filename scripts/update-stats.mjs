@@ -426,24 +426,27 @@ try {
     const top = [...byLang.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
     const totalBytes = top.reduce((s, [, b]) => s + b, 0);
     const barW = 444;
+    const barY = 55;
+    const rowH = 32;
     let bars = "";
     let segs = "";
     let x = 25;
     top.forEach(([lang, bytes], i) => {
         const share = totalBytes > 0 ? bytes / totalBytes : 0;
         const pct = Math.round(share * 1000) / 10;
-        const y = 62 + i * 29;
+        const y = barY + 24 + i * rowH;
         bars += `
     <rect width="11" height="11" x="25" y="${y - 11}" rx="2" fill="${langColor(lang)}"/>
     <text x="42" y="${y}" fill="#c9d1d9" font-family="${FONT}" font-size="13">${esc(lang)}</text>
     <text x="469" y="${y}" text-anchor="end" fill="#c9d1d9" font-family="${FONT}" font-size="13">${pct}%</text>`;
         const segW = Math.max(3, Math.round(share * barW));
-        segs += `  <rect width="${segW}" height="8" x="${x}" y="47" fill="${langColor(lang)}" rx="1"/>
+        segs += `  <rect width="${segW}" height="8" x="${x}" y="${barY}" fill="${langColor(lang)}" rx="1"/>
 `;
         x += segW;
     });
-    const langsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${62 + 29 * top.length}" viewBox="0 0 494 ${62 + 29 * top.length}">
-  <rect x="0.5" y="0.5" width="493" height="${61 + 29 * top.length}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+    const langsH = barY + 24 + rowH * top.length + 8;
+    const langsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${langsH}" viewBox="0 0 494 ${langsH}">
+  <rect x="0.5" y="0.5" width="493" height="${langsH - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
   <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">Most used languages</text>
 ${segs}${bars}
 </svg>`;
