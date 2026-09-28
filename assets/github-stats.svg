@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="494" height="235" viewBox="0 0 494 235">
-  <rect x="0.5" y="0.5" width="493" height="234" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="35" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="18" font-weight="600">GitHub stats</text>
-  <line x1="0" y1="47" x2="494" y2="47" stroke="#21262d" stroke-width="1"/>
-    <g transform="translate(25, 62)">
-        <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">⭐ Total stars</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">0</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="184" viewBox="0 0 450 184">
+  <rect x="0.5" y="0.5" width="449" height="183" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="15" y="24" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">GitHub stats</text>
+  <line x1="0" y1="35" x2="450" y2="35" stroke="#21262d" stroke-width="1"/>
+    <g transform="translate(15, 46)">
+        <text x="0" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">⭐ Total stars</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">0</text>
     </g>
-    <g transform="translate(25, 95)">
-        <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">🍴 Total forks</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">0</text>
+    <g transform="translate(15, 72)">
+        <text x="0" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">🍴 Total forks</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">0</text>
     </g>
-    <g transform="translate(25, 128)">
-        <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">📦 Repositories</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">10</text>
+    <g transform="translate(15, 98)">
+        <text x="0" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">📦 Repositories</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">10</text>
     </g>
-    <g transform="translate(25, 161)">
-        <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">🧾 Commits</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">1</text>
+    <g transform="translate(15, 124)">
+        <text x="0" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">🧾 Commits</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">6</text>
     </g>
-    <g transform="translate(25, 194)">
-        <text x="0" y="15" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14">👥 Followers</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">—</text>
+    <g transform="translate(15, 150)">
+        <text x="0" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">👥 Followers</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">0</text>
     </g>
 </svg>

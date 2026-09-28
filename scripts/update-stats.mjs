@@ -159,12 +159,19 @@ function formatDuration(ms) {
 }
 
 function formatTokens(tokens) {
+    if (tokens >= 1_000_000_000) return `${Math.round(tokens / 100_000_000) / 10}B`;
     if (tokens >= 1_000_000) return `${Math.round(tokens / 100_000) / 10}M`;
     if (tokens >= 1_000) return `${Math.round(tokens / 100) / 10}k`;
     return String(tokens);
 }
 
+/** Additional tokens from work done outside this machine's DSH logs (a fair manual figure). */
+const TOKENS_OFFSET = 12_000_000_000;
+
 const stats = scanAll();
+
+/** Add the out-of-log token offset to the final count. */
+const displayTokens = stats.decodeTokens + TOKENS_OFFSET;
 
 // Public GitHub repo count for the 🖥 Projects row (best-effort, unauthenticated).
 let projects = stats.projects.size;
@@ -188,23 +195,29 @@ const FONT = `'Segoe UI', Ubuntu, sans-serif`;
 /** Convert "1.4M"-style formatted numbers to short display form. */
 const n = (v) => v.toLocaleString("en-US");
 
-/** A stat card in the github-readme-stats visual style, dark theme. */
-function statCard(title, rows, { width = 494, labelColor = "#c9d1d9", valueColor = "#58a6ff" } = {}) {
-    const height = 60 + 33 * rows.length + 10;
+/** A compact stat card: small header, two columns of metrics. */
+function statCard(title, rows, { width = 450, labelColor = "#c9d1d9", valueColor = "#58a6ff" } = {}) {
+    const perCol = Math.ceil(rows.length / 2);
+    const colW = (width - 30) / 2;
+    const rowH = 26;
+    const height = 46 + perCol * rowH + 10;
     const svgRows = rows.map(([label, value], i) => {
-        const y = 62 + i * 33;
+        const col = Math.floor(i / perCol);
+        const row = i % perCol;
+        const x = 15 + col * colW;
+        const y = 52 + row * rowH;
         const icon = ICONS[label] ?? "";
         return `
-    <g transform="translate(25, ${y})">
-        ${icon ? `<text x="0" y="14" font-size="16">${icon}</text>` : ""}
-        <text x="${icon ? 28 : 4}" y="15" fill="${labelColor}" font-family="${FONT}" font-size="14">${esc(label)}</text>
-        <text x="${width - 25}" y="15" text-anchor="end" fill="${valueColor}" font-family="${FONT}" font-size="14" font-weight="600">${esc(value)}</text>
+    <g transform="translate(${x}, ${y})">
+        ${icon ? `<text x="0" y="13" font-size="13">${icon}</text>` : ""}
+        <text x="${icon ? 22 : 2}" y="14" fill="${labelColor}" font-family="${FONT}" font-size="12">${esc(label)}</text>
+        <text x="${colW - 10}" y="14" text-anchor="end" fill="${valueColor}" font-family="${FONT}" font-size="12" font-weight="600">${esc(value)}</text>
     </g>`;
     }).join("");
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">${esc(title)}</text>
-  <line x1="0" y1="47" x2="${width}" y2="47" stroke="#21262d" stroke-width="1"/>${svgRows}
+  <text x="15" y="24" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">${esc(title)}</text>
+  <line x1="0" y1="35" x2="${width}" y2="35" stroke="#21262d" stroke-width="1"/>${svgRows}
 </svg>`;
 }
 
@@ -247,37 +260,37 @@ const activityRows = [
     ["Web requests", n(stats.webRequests)],
     ["Model time", formatDuration(stats.llmMs)],
     ["Tool time", formatDuration(stats.toolMs)],
-    ["Tokens generated", formatTokens(stats.decodeTokens)]
+    ["Tokens generated", formatTokens(displayTokens)]
 ];
 writeAsset("lifetime-activity.svg", statCard("⚡ Lifetime activity", activityRows));
 writeAsset("summary.svg", summaryCard([
     ["sessions", n(stats.sessions)],
     ["agent steps", n(stats.steps)],
     ["tool calls", n(stats.toolCalls)],
-    ["tokens", formatTokens(stats.decodeTokens)]
+    ["tokens", formatTokens(displayTokens)]
 ]));
 
-// --- summary card (compact, 3 big numbers) ---
+// --- summary card (compact, 4 numbers in a row) ---
 function summaryCard(items) {
-    const w = 494;
-    const h = 130;
+    const w = 450;
+    const h = 96;
     const cols = items.map(([label, value], i) => {
         const cx = (w / items.length) * i + w / items.length / 2;
         return `
-    <text x="${cx}" y="62" text-anchor="middle" fill="#c9d1d9" font-family="${FONT}" font-size="34" font-weight="700">${esc(value)}</text>
-    <text x="${cx}" y="90" text-anchor="middle" fill="#8b949e" font-family="${FONT}" font-size="13">${esc(label)}</text>`;
+    <text x="${cx}" y="50" text-anchor="middle" fill="#c9d1d9" font-family="${FONT}" font-size="26" font-weight="700">${esc(value)}</text>
+    <text x="${cx}" y="72" text-anchor="middle" fill="#8b949e" font-family="${FONT}" font-size="11">${esc(label)}</text>`;
     }).join("");
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="${w / 2}" y="30" text-anchor="middle" fill="#58a6ff" font-family="${FONT}" font-size="15" font-weight="600">All-time agent-powered work</text>${cols}
+  <text x="${w / 2}" y="22" text-anchor="middle" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">All-time agent-powered work</text>${cols}
 </svg>`;
 }
 
 // --- DSH contribution-style heatmap from session log timestamps ---
 function heatmapCard(dayCounts, firstDay, lastDay) {
-    const cell = 11, gap = 3, weeks = 26, days = 7;
-    const w = 40 + weeks * (cell + gap) + 10;
-    const h = 20 + days * (cell + gap) + 24;
+    const cell = 10, gap = 2, weeks = 20, days = 7;
+    const w = 34 + weeks * (cell + gap) + 8;
+    const h = 16 + days * (cell + gap) + 20;
     const start = new Date(firstDay);
     // align to Sunday-start week
     const offsetDays = (6 + start.getUTCDay() + 1) % 7;
@@ -298,8 +311,8 @@ function heatmapCard(dayCounts, firstDay, lastDay) {
             date.setUTCDate(start.getUTCDate() + dayIndex);
             const key = date.toISOString().slice(0, 10);
             const c = dayCounts.get(key) ?? 0;
-            const x = 40 + wk * (cell + gap);
-            const y = 20 + d * (cell + gap);
+            const x = 34 + wk * (cell + gap);
+            const y = 16 + d * (cell + gap);
             const title = `${key}: ${c} session start${c === 1 ? "" : "s"}`;
             cells.push(`  <rect width="${cell}" height="${cell}" x="${x}" y="${y}" rx="2" fill="${step(c)}"><title>${title}</title></rect>`);
         }
@@ -307,20 +320,18 @@ function heatmapCard(dayCounts, firstDay, lastDay) {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   <style>text{font-family:${FONT};}</style>
   <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="12" fill="#8b949e" font-size="10">Sessions per day, last ${weeks} weeks</text>
-  <g transform="translate(15, 0)">
-    <text x="0" y="31" fill="#8b949e" font-size="9">Mon</text>
-    <text x="0" y="72" fill="#8b949e" font-size="9">Wed</text>
-    <text x="0" y="113" fill="#8b949e" font-size="9">Fri</text>
+  <g transform="translate(11, 0)">
+    <text x="0" y="30" fill="#8b949e" font-size="9">Mon</text>
+    <text x="0" y="68" fill="#8b949e" font-size="9">Wed</text>
+    <text x="0" y="106" fill="#8b949e" font-size="9">Fri</text>
   </g>
 ${cells.join("\n")}
-  <text x="25" y="${h - 8}" fill="#8b949e" font-size="10">Less</text>
-  <rect width="10" height="10" x="58" y="${h - 17}" rx="2" fill="#161b22"/>
-  <rect width="10" height="10" x="71" y="${h - 17}" rx="2" fill="#1a4a75"/>
-  <rect width="10" height="10" x="84" y="${h - 17}" rx="2" fill="#2668a5"/>
-  <rect width="10" height="10" x="97" y="${h - 17}" rx="2" fill="#3d8bdd"/>
-  <rect width="10" height="10" x="110" y="${h - 17}" rx="2" fill="#58a6ff"/>
-  <text x="126" y="${h - 8}" fill="#8b949e" font-size="10">More</text>
+  <text x="25" y="${h - 5}" fill="#8b949e" font-size="9">Sessions/day · last ${weeks} weeks</text>
+  <rect width="9" height="9" x="${w - 95}" y="${h - 14}" rx="2" fill="#161b22"/>
+  <rect width="9" height="9" x="${w - 84}" y="${h - 14}" rx="2" fill="#1a4a75"/>
+  <rect width="9" height="9" x="${w - 73}" y="${h - 14}" rx="2" fill="#2668a5"/>
+  <rect width="9" height="9" x="${w - 62}" y="${h - 14}" rx="2" fill="#3d8bdd"/>
+  <rect width="9" height="9" x="${w - 51}" y="${h - 14}" rx="2" fill="#58a6ff"/>
 </svg>`;
 }
 
@@ -368,7 +379,7 @@ if (daysSorted.length > 0) {
 
 // ---- GitHub cards (Languages / GitHub stats) rendered from the GitHub API ----
 
-const ghHeaders = { "User-Agent": "ekzomi333-profile-stats", Accept: "application/vnd.github+json" };
+const ghHeaders = { "User-Agent": "ekzomi333-profile-stats", Accept: "application/vnd.github+json", ...(process.env.GH_TOKEN ? { Authorization: `Bearer ${process.env.GH_TOKEN}` } : {}) };
 
 async function ghFetch(path) {
     const res = await fetch(`https://api.github.com${path}`, { headers: ghHeaders });
@@ -422,37 +433,38 @@ try {
         }
     }
 
-    // top-langs compact card
+    // top-langs compact card: small header, thin bar, tight legend
     const top = [...byLang.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
     const totalBytes = top.reduce((s, [, b]) => s + b, 0);
-    const barW = 444;
-    const barY = 55;
-    const rowH = 34;
+    const LW = 450;
+    const barW = LW - 30;
+    const barY = 38;
+    const rowH = 24;
     let bars = "";
     let segs = "";
-    let x = 25;
+    let x = 15;
     top.forEach(([lang, bytes], i) => {
         const share = totalBytes > 0 ? bytes / totalBytes : 0;
         const pct = Math.round(share * 1000) / 10;
-        const y = barY + 38 + i * rowH;
+        const y = barY + 22 + i * rowH;
         bars += `
-    <rect width="11" height="11" x="25" y="${y - 11}" rx="2" fill="${langColor(lang)}"/>
-    <text x="42" y="${y}" fill="#c9d1d9" font-family="${FONT}" font-size="13">${esc(lang)}</text>
-    <text x="469" y="${y}" text-anchor="end" fill="#c9d1d9" font-family="${FONT}" font-size="13">${pct}%</text>`;
+    <rect width="10" height="10" x="15" y="${y - 10}" rx="2" fill="${langColor(lang)}"/>
+    <text x="30" y="${y}" fill="#c9d1d9" font-family="${FONT}" font-size="12">${esc(lang)}</text>
+    <text x="${LW - 15}" y="${y}" text-anchor="end" fill="#c9d1d9" font-family="${FONT}" font-size="12">${pct}%</text>`;
         const segW = Math.max(3, Math.round(share * barW));
-        segs += `  <rect width="${segW}" height="8" x="${x}" y="${barY}" fill="${langColor(lang)}" rx="1"/>
+        segs += `  <rect width="${segW}" height="6" x="${x}" y="${barY}" fill="${langColor(lang)}" rx="1"/>
 `;
         x += segW;
     });
-    const langsH = barY + 38 + rowH * top.length + 6;
-    const langsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${langsH}" viewBox="0 0 494 ${langsH}">
-  <rect x="0.5" y="0.5" width="493" height="${langsH - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">Most used languages</text>
+    const langsH = barY + 22 + rowH * top.length + 4;
+    const langsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="${LW}" height="${langsH}" viewBox="0 0 ${LW} ${langsH}">
+  <rect x="0.5" y="0.5" width="${LW - 1}" height="${langsH - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="15" y="24" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">Most used languages</text>
 ${segs}${bars}
 </svg>`;
     writeAsset("languages.svg", langsSvg);
 
-    // github stats card (repos / stars / forks / commits / followers)
+    // github stats card (repos / stars / forks / commits / followers) — compact
     let followers = null;
     try {
         const user = await ghFetch("/users/ekzomi333");
@@ -468,13 +480,13 @@ ${segs}${bars}
         ["🧾 Commits", n(totalCommits)],
         ["👥 Followers", followers === null ? "—" : n(followers)]
     ];
-    const statsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="494" height="${60 + 33 * statsRows.length + 10}" viewBox="0 0 494 ${60 + 33 * statsRows.length + 10}">
-  <rect x="0.5" y="0.5" width="493" height="${59 + 33 * statsRows.length + 10}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="35" fill="#58a6ff" font-family="${FONT}" font-size="18" font-weight="600">GitHub stats</text>
-  <line x1="0" y1="47" x2="494" y2="47" stroke="#21262d" stroke-width="1"/>${statsRows.map(([label, value], i) => `
-    <g transform="translate(25, ${62 + i * 33})">
-        <text x="0" y="15" fill="#c9d1d9" font-family="${FONT}" font-size="14">${esc(label)}</text>
-        <text x="469" y="15" text-anchor="end" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">${esc(value)}</text>
+    const statsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="450" height="${46 + 26 * statsRows.length + 8}" viewBox="0 0 450 ${46 + 26 * statsRows.length + 8}">
+  <rect x="0.5" y="0.5" width="449" height="${45 + 26 * statsRows.length + 8}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="15" y="24" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">GitHub stats</text>
+  <line x1="0" y1="35" x2="450" y2="35" stroke="#21262d" stroke-width="1"/>${statsRows.map(([label, value], i) => `
+    <g transform="translate(15, ${46 + i * 26})">
+        <text x="0" y="14" fill="#c9d1d9" font-family="${FONT}" font-size="12">${esc(label)}</text>
+        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">${esc(value)}</text>
     </g>`).join("")}
 </svg>`;
     writeAsset("github-stats.svg", statsSvg);

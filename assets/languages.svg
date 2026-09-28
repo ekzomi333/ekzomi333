@@ -1,29 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="494" height="303" viewBox="0 0 494 303">
-  <rect x="0.5" y="0.5" width="493" height="302" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="25" y="35" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="18" font-weight="600">Most used languages</text>
-  <rect width="162" height="8" x="25" y="55" fill="#f34b7d" rx="1"/>
-  <rect width="149" height="8" x="187" y="55" fill="#e34c26" rx="1"/>
-  <rect width="51" height="8" x="336" y="55" fill="#3572A5" rx="1"/>
-  <rect width="45" height="8" x="387" y="55" fill="#f1e05a" rx="1"/>
-  <rect width="35" height="8" x="432" y="55" fill="#d4a0d4" rx="1"/>
-  <rect width="3" height="8" x="467" y="55" fill="#555555" rx="1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="208" viewBox="0 0 450 208">
+  <rect x="0.5" y="0.5" width="449" height="207" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="15" y="24" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="14" font-weight="600">Most used languages</text>
+  <rect width="153" height="6" x="15" y="38" fill="#f34b7d" rx="1"/>
+  <rect width="141" height="6" x="168" y="38" fill="#e34c26" rx="1"/>
+  <rect width="48" height="6" x="309" y="38" fill="#3572A5" rx="1"/>
+  <rect width="43" height="6" x="357" y="38" fill="#f1e05a" rx="1"/>
+  <rect width="34" height="6" x="400" y="38" fill="#d4a0d4" rx="1"/>
+  <rect width="3" height="6" x="434" y="38" fill="#555555" rx="1"/>
 
-    <rect width="11" height="11" x="25" y="82" rx="2" fill="#f34b7d"/>
-    <text x="42" y="93" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">C++</text>
-    <text x="469" y="93" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">36.6%</text>
-    <rect width="11" height="11" x="25" y="116" rx="2" fill="#e34c26"/>
-    <text x="42" y="127" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">HTML</text>
-    <text x="469" y="127" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">33.7%</text>
-    <rect width="11" height="11" x="25" y="150" rx="2" fill="#3572A5"/>
-    <text x="42" y="161" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">Python</text>
-    <text x="469" y="161" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">11.5%</text>
-    <rect width="11" height="11" x="25" y="184" rx="2" fill="#f1e05a"/>
-    <text x="42" y="195" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">JavaScript</text>
-    <text x="469" y="195" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">10.2%</text>
-    <rect width="11" height="11" x="25" y="218" rx="2" fill="#d4a0d4"/>
-    <text x="42" y="229" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">CMake</text>
-    <text x="469" y="229" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">8%</text>
-    <rect width="11" height="11" x="25" y="252" rx="2" fill="#555555"/>
-    <text x="42" y="263" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">C</text>
-    <text x="469" y="263" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="13">0%</text>
+    <rect width="10" height="10" x="15" y="50" rx="2" fill="#f34b7d"/>
+    <text x="30" y="60" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">C++</text>
+    <text x="435" y="60" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">36.5%</text>
+    <rect width="10" height="10" x="15" y="74" rx="2" fill="#e34c26"/>
+    <text x="30" y="84" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">HTML</text>
+    <text x="435" y="84" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">33.6%</text>
+    <rect width="10" height="10" x="15" y="98" rx="2" fill="#3572A5"/>
+    <text x="30" y="108" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Python</text>
+    <text x="435" y="108" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">11.5%</text>
+    <rect width="10" height="10" x="15" y="122" rx="2" fill="#f1e05a"/>
+    <text x="30" y="132" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">JavaScript</text>
+    <text x="435" y="132" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">10.3%</text>
+    <rect width="10" height="10" x="15" y="146" rx="2" fill="#d4a0d4"/>
+    <text x="30" y="156" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">CMake</text>
+    <text x="435" y="156" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">8%</text>
+    <rect width="10" height="10" x="15" y="170" rx="2" fill="#555555"/>
+    <text x="30" y="180" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">C</text>
+    <text x="435" y="180" text-anchor="end" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">0%</text>
 </svg>
