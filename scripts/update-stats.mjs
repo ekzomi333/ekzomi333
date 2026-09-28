@@ -276,19 +276,23 @@ writeAsset("summary.svg", summaryCard([
     ["tokens", formatTokens(displayTokens)]
 ]));
 
-// --- summary card (compact, 4 numbers in a row) ---
+// --- summary card (compact, 4 numbers in a 2x2 grid) ---
 function summaryCard(items) {
     const w = 400;
-    const h = 96;
-    const cols = items.map(([label, value], i) => {
-        const cx = (w / items.length) * i + w / items.length / 2;
+    const h = 140;
+    const cells = items.map(([label, value], i) => {
+        const col = i % 2;
+        const row = Math.floor(i / 2);
+        const cx = col === 0 ? 15 : w / 2 + 10;
+        const y = 52 + row * 48;
         return `
-    <text x="${cx}" y="50" text-anchor="middle" fill="#c9d1d9" font-family="${FONT}" font-size="26" font-weight="700">${esc(value)}</text>
-    <text x="${cx}" y="72" text-anchor="middle" fill="#8b949e" font-family="${FONT}" font-size="11">${esc(label)}</text>`;
+    <text x="${cx}" y="${y}" fill="#c9d1d9" font-family="${FONT}" font-size="22" font-weight="700">${esc(value)}</text>
+    <text x="${cx}" y="${y + 17}" fill="#8b949e" font-family="${FONT}" font-size="11">${esc(label)}</text>`;
     }).join("");
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
   <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="${w / 2}" y="22" text-anchor="middle" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">All-time agent-powered work</text>${cols}
+  <text x="15" y="24" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">All-time agent-powered work</text>
+  <line x1="0" y1="34" x2="${w}" y2="34" stroke="#21262d" stroke-width="1"/>${cells}
 </svg>`;
 }
 
