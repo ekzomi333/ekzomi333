@@ -167,11 +167,17 @@ function formatTokens(tokens) {
 
 /** Additional tokens from work done outside this machine's DSH logs (a fair manual figure). */
 const TOKENS_OFFSET = 12_000_000_000;
+/** Additional agent steps from work done outside this machine's DSH logs. */
+const STEPS_OFFSET = 33_000;
+/** Additional tool calls from work done outside this machine's DSH logs. */
+const TOOL_CALLS_OFFSET = 8_150;
 
 const stats = scanAll();
 
-/** Add the out-of-log token offset to the final count. */
+/** Out-of-log offsets applied to the displayed totals. */
 const displayTokens = stats.decodeTokens + TOKENS_OFFSET;
+const displaySteps = stats.steps + STEPS_OFFSET;
+const displayToolCalls = stats.toolCalls + TOOL_CALLS_OFFSET;
 
 // Public GitHub repo count for the 🖥 Projects row (best-effort, unauthenticated).
 let projects = stats.projects.size;
@@ -196,7 +202,7 @@ const FONT = `'Segoe UI', Ubuntu, sans-serif`;
 const n = (v) => v.toLocaleString("en-US");
 
 /** A compact stat card: small header, two columns of metrics. */
-function statCard(title, rows, { width = 450, labelColor = "#c9d1d9", valueColor = "#58a6ff" } = {}) {
+function statCard(title, rows, { width = 400, labelColor = "#c9d1d9", valueColor = "#58a6ff" } = {}) {
     const perCol = Math.ceil(rows.length / 2);
     const colW = (width - 30) / 2;
     const rowH = 26;
@@ -250,8 +256,8 @@ const activityRows = [
     ["Projects", String(projects)],
     ["Agent sessions", n(stats.sessions)],
     ["User turns", n(stats.turns)],
-    ["Agent steps", n(stats.steps)],
-    ["Tool calls", n(stats.toolCalls)],
+    ["Agent steps", n(displaySteps)],
+    ["Tool calls", n(displayToolCalls)],
     ["Shell commands", n(stats.shellCommands)],
     ["Files written", n(stats.filesWritten)],
     ["Files edited", n(stats.filesEdited)],
@@ -265,14 +271,14 @@ const activityRows = [
 writeAsset("lifetime-activity.svg", statCard("⚡ Lifetime activity", activityRows));
 writeAsset("summary.svg", summaryCard([
     ["sessions", n(stats.sessions)],
-    ["agent steps", n(stats.steps)],
-    ["tool calls", n(stats.toolCalls)],
+    ["agent steps", n(displaySteps)],
+    ["tool calls", n(displayToolCalls)],
     ["tokens", formatTokens(displayTokens)]
 ]));
 
 // --- summary card (compact, 4 numbers in a row) ---
 function summaryCard(items) {
-    const w = 450;
+    const w = 400;
     const h = 96;
     const cols = items.map(([label, value], i) => {
         const cx = (w / items.length) * i + w / items.length / 2;
@@ -436,7 +442,7 @@ try {
     // top-langs compact card: small header, thin bar, tight legend
     const top = [...byLang.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
     const totalBytes = top.reduce((s, [, b]) => s + b, 0);
-    const LW = 450;
+    const LW = 400;
     const barW = LW - 30;
     const barY = 38;
     const rowH = 24;
@@ -480,13 +486,13 @@ ${segs}${bars}
         ["🧾 Commits", n(totalCommits)],
         ["👥 Followers", followers === null ? "—" : n(followers)]
     ];
-    const statsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="450" height="${46 + 26 * statsRows.length + 8}" viewBox="0 0 450 ${46 + 26 * statsRows.length + 8}">
-  <rect x="0.5" y="0.5" width="449" height="${45 + 26 * statsRows.length + 8}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+    const statsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="${46 + 26 * statsRows.length + 8}" viewBox="0 0 400 ${46 + 26 * statsRows.length + 8}">
+  <rect x="0.5" y="0.5" width="399" height="${45 + 26 * statsRows.length + 8}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
   <text x="15" y="24" fill="#58a6ff" font-family="${FONT}" font-size="14" font-weight="600">GitHub stats</text>
-  <line x1="0" y1="35" x2="450" y2="35" stroke="#21262d" stroke-width="1"/>${statsRows.map(([label, value], i) => `
+  <line x1="0" y1="35" x2="400" y2="35" stroke="#21262d" stroke-width="1"/>${statsRows.map(([label, value], i) => `
     <g transform="translate(15, ${46 + i * 26})">
         <text x="0" y="14" fill="#c9d1d9" font-family="${FONT}" font-size="12">${esc(label)}</text>
-        <text x="420" y="14" text-anchor="end" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">${esc(value)}</text>
+        <text x="370" y="14" text-anchor="end" fill="#58a6ff" font-family="${FONT}" font-size="12" font-weight="600">${esc(value)}</text>
     </g>`).join("")}
 </svg>`;
     writeAsset("github-stats.svg", statsSvg);
@@ -495,24 +501,19 @@ ${segs}${bars}
     console.log(`github cards skipped: ${error.message}`);
 }
 
+const v = `?v=${today}`;
 const block = [
-    "## ⚡ Lifetime activity",
+    `<a href="https://github.com/ekzomi333"><img src="assets/summary.svg${v}" alt="summary" /></a>`,
     "",
-    `<img src="assets/summary.svg?v=${today}" alt="summary" />`,
+    `<a href="https://github.com/ekzomi333"><img height="140" src="https://streak-stats.demolab.com?user=ekzomi333&hide_border=true&background=0D1117&ring=58A6FF&currStreakLabel=58A6FF&fire=58A6FF&sideLabels=C9D1D9&dates=C9D1D9&currStreakNum=C9D1D9&sideNums=C9D1D9" alt="ekzomi333 streak" /></a>`,
     "",
-    `<img src="assets/lifetime-activity.svg?v=${today}" alt="lifetime activity" />`,
+    `<a href="https://github.com/ekzomi333?tab=repositories"><img src="assets/lifetime-activity.svg${v}" alt="lifetime activity" /></a>`,
+    `<a href="https://github.com/ekzomi333"><img src="assets/languages.svg${v}" alt="top langs" /></a>`,
     "",
-    `<img src="assets/activity-heatmap.svg?v=${today}" alt="activity heatmap" />`,
+    `<a href="https://github.com/ekzomi333"><img src="assets/github-stats.svg${v}" alt="github stats" /></a>`,
+    `<a href="https://github.com/ekzomi333"><img src="assets/activity-heatmap.svg${v}" alt="activity heatmap" /></a>`,
     "",
-    `*Auto-updated · last update: ${today}*`,
-    "",
-    `**Most used languages**`,
-    "",
-    `<img src="assets/languages.svg?v=${today}" alt="top langs" />`,
-    "",
-    `**GitHub stats**`,
-    "",
-    `<img src="assets/github-stats.svg?v=${today}" alt="github stats" />`
+    `<sub>Auto-updated · ${today}</sub>`
 ].join("\n");
 
 const readme = readFileSync(readmePath, "utf8");
