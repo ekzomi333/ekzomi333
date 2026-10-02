@@ -2,12 +2,12 @@
   <rect x="0.5" y="0.5" width="399" height="139" rx="4.5" fill="#0d1117" stroke="#30363d"/>
   <text x="15" y="24" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">All-time agent-powered work</text>
   <line x1="0" y1="34" x2="400" y2="34" stroke="#21262d" stroke-width="1"/>
-    <text x="15" y="52" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">24,960</text>
+    <text x="15" y="52" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">37,440</text>
     <text x="15" y="69" fill="#8b949e" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="11">sessions</text>
-    <text x="210" y="52" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">11,439,480</text>
+    <text x="210" y="52" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">15,757,560</text>
     <text x="210" y="69" fill="#8b949e" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="11">agent steps</text>
-    <text x="15" y="100" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">11,498,760</text>
+    <text x="15" y="100" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">16,127,280</text>
     <text x="15" y="117" fill="#8b949e" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="11">tool calls</text>
-    <text x="210" y="100" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">16.67B</text>
+    <text x="210" y="100" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="22" font-weight="700">18.95B</text>
     <text x="210" y="117" fill="#8b949e" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="11">tokens</text>
 </svg>

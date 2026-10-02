@@ -10,66 +10,66 @@
     <g transform="translate(15, 78)">
         <text x="0" y="13" font-size="13">🚀</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Agent sessions</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">24,960</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">37,440</text>
     </g>
     <g transform="translate(15, 104)">
         <text x="0" y="13" font-size="13">🔁</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">User turns</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">235,560</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">329,160</text>
     </g>
     <g transform="translate(15, 130)">
         <text x="0" y="13" font-size="13">⚙️</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Agent steps</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">11,439,480</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">15,757,560</text>
     </g>
     <g transform="translate(15, 156)">
         <text x="0" y="13" font-size="13">🛠</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Tool calls</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">11,498,760</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">16,127,280</text>
     </g>
     <g transform="translate(15, 182)">
         <text x="0" y="13" font-size="13">⌨️</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Shell commands</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">6,484,920</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">8,860,800</text>
     </g>
     <g transform="translate(15, 208)">
         <text x="0" y="13" font-size="13">📝</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Files written</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">569,400</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">722,280</text>
     </g>
     <g transform="translate(200, 52)">
         <text x="0" y="13" font-size="13">✏️</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Files edited</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">664,560</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">964,080</text>
     </g>
     <g transform="translate(200, 78)">
         <text x="0" y="13" font-size="13">📖</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Files read</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">1,441,440</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">2,024,880</text>
     </g>
     <g transform="translate(200, 104)">
         <text x="0" y="13" font-size="13">🔎</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Searches</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">670,800</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">1,076,400</text>
     </g>
     <g transform="translate(200, 130)">
         <text x="0" y="13" font-size="13">🌐</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Web requests</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">221,520</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">227,760</text>
     </g>
     <g transform="translate(200, 156)">
         <text x="0" y="13" font-size="13">🧠</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Model time</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">10.6kh</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">15.6kh</text>
     </g>
     <g transform="translate(200, 182)">
         <text x="0" y="13" font-size="13">🔧</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Tool time</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">6.2kh</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">11.6kh</text>
     </g>
     <g transform="translate(200, 208)">
         <text x="0" y="13" font-size="13">🪙</text>
         <text x="22" y="14" fill="#c9d1d9" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12">Tokens generated</text>
-        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">16.67B</text>
+        <text x="175" y="14" text-anchor="end" fill="#58a6ff" font-family="'Segoe UI', Ubuntu, sans-serif" font-size="12" font-weight="600">18.95B</text>
     </g>
 </svg>
